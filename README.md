@@ -1,34 +1,5 @@
-# Life On Hard Mode
-
-A short narrative "adventure" game.
-
-Premise: You have $500,000,000, have the ear of the president,
-    and own a semi-functional social media site. How will you survive
-    Life on Hard Mode??
-
-Player stats:
-Balance: begins at $500000000
-Followers: 218,000,000
-Sanity: 5/10
-Charisma: 0/10 
-(charisma and sanity can go negative)
-
-Start with 3 Days Divided into Morning, Afternoon, and Night - 9 scenes
-at each scene, player is presented w/ a short narrative scene and list of options
-something like
-
-
-
-Sunday Breakfast:
-You have been awake all night. Your nostrils burn. The world smells of ketamine and self-loathing. Your eyeslids feel like sandpaper every time you hazily blink.
-
-A. Relinquish your belongings and move to the woods
-B. Have your chef prepare a healthy breakfast while you receive a vitamin IV, then relax by the pool
-C. Call your children and tell them that you love them
-D. End world hunger for the next year (-$40,000,000 ($460,000,000 remaining))
-E. Repost Nazi memes for 8 hours
-
-# Text Adventure
+# Where's the Weef?
+## A Text Adventure
 You are breaking into building X to perform Y act of Z (sabotage?)
 Lobby / main room / diner O / whatever
 Amazing Fresh, the only source of food for many in this quadrant, has recently drastically decreased their portion sizes.
