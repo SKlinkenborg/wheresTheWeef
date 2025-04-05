@@ -70,5 +70,6 @@ def getFight(pc, enemy):
         # Check for win/lose conditions
         if pc["stamina"] <= 0:
             print("You died :(")
+            exit()
         elif enemy["stamina"] <= 0:
             print("You win :)")
