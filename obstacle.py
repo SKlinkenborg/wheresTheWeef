@@ -19,28 +19,6 @@ skull = '''
    @@@@@@@@@@@@@|  | | | | | | | |
                  \_|_|_|_|_|_|_|_|'''
 
-treasure = '''
-*******************************************************************************
-          |                   |                  |                     |
- _________|________________.=""_;=.______________|_____________________|_______
-|                   |  ,-"_,=""     `"=.|                  |
-|___________________|__"=._o`"-._        `"=.______________|___________________
-          |                `"=._o`"=._      _`"=._                     |
- _________|_____________________:=._o "=._."_.-="'"=.__________________|_______
-|                   |    __.--" , ; `"=._o." ,-"""-._ ".   |
-|___________________|_._"  ,. .` ` `` ,  `"-._"-._   ". '__|___________________
-          |           |o`"=._` , "` `; .". ,  "-._"-._; ;              |
- _________|___________| ;`-.o`"=._; ." ` '`."\` . "-._ /_______________|_______
-|                   | |o;    `"-.o`"=._``  '` " ,__.--o;   |
-|___________________|_| ;     (#) `-.o `"=.`_.--"_o.-; ;___|___________________
-____/______/______/___|o;._    "      `".o|o_.--"    ;o;____/______/______/____
-/______/______/______/_"=._o--._        ; | ;        ; ;/______/______/______/_
-____/______/______/______/__"=._o--._   ;o|o;     _._;o;____/______/______/____
-/______/______/______/______/____"=._o._; | ;_.--"o.--"_/______/______/______/_
-____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
-/______/______/______/______/______/______/______/______/______/______/[TomekK]
-*******************************************************************************'''
-
 frames = [
     '''
     |   |   |   |   |   |
@@ -131,19 +109,32 @@ def winAnimation():
         print(frame[0])
         time.sleep(delay)
 
+key_pressed = False  # Global flag to track keypress
+
+def on_key_event(event):
+    global key_pressed
+    if event.name == "a":  # Check if the "A" key was pressed
+        key_pressed = True
+
+keyboard.hook(on_key_event)  # Hook the keypress event
+
 def game_loop(cels):
+    global key_pressed
+    target_index = (len(cels) // 2) / 100  # Example: Target index is halfway through the frames
     for frame, index in cels:
         os.system('cls' if os.name == 'nt' else 'clear')  # Clear the terminal
         print("Press A when it's safe to pass!")
-        print(index)
+        print(f"Current Index: {index}, Target Index: {target_index}")
         print(frame)
-        # Non-blocking delay loop
+
+        # Reset key_pressed for each frame
+        key_pressed = False
         start_time = time.time()
         while time.time() - start_time < delay:
-            if keyboard.is_pressed("a") and index == int(math.ceil(len(cels) / 2) / 100):
+            if key_pressed and index == target_index:
                 winAnimation()
                 return
-            elif keyboard.is_pressed("a"):
+            elif key_pressed:
                 print(f"{skull}")
                 return
 
