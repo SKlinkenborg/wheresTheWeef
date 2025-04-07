@@ -4,7 +4,7 @@
 # Player successfully passes obstacle
 # If not: -2 Stamina & try again
 
-import time, os, keyboard
+import time, os, keyboard, math
 
 skull = '''
        @@@@@@@@@@@@@@@@@@
@@ -73,8 +73,7 @@ frames = [
     |   |   |   |   |   |
     ''',
 ]
-
-win_animation = [
+win = [
         '''
     |   |   | o |   |   |
     | X | X |   | X | X |
@@ -89,40 +88,49 @@ win_animation = [
     | X | X |   | X | X |
     |   |   | o |   |   |
     ''',
-
-
 ]
+delay = 1.25
 # count the frames, return numbers to list
-frame_count = len(frames)
-frame_ints = []
-for i in range(frame_count):
-    frame_ints.append(i)
+def cel_maker(frames):
+    frame_count = len(frames)
+    frame_ints = []
+    for i in range(frame_count):
+        frame_ints.append(i)
+     # create tuples of frame, frame #
+    cels = zip(frames, frame_ints)
+    cels = list(cels)
+    return cels
 
-# create tuples of frame, frame #
-cels = zip(frames, frame_ints)
-cels = list(cels)
-# Repeat frames to create a longer animation
-animation_loops = cels * 100
+# create list of tuples for each animation
+main_animation = cel_maker(frames) * 100
+win_frames = cel_maker(win)
 
-# Animate the frames
-def animation_loops(frames, delay=0.25):
-    """Animates a sequence of ASCII art frames in the terminal.
-
-    Args:
-        frames: A list of strings, where each string represents an ASCII art frame.
-        delay: The time delay (in seconds) between frames.
-    """
-    for frame in frames:
-        os.system('cls' if os.name == 'nt' else 'clear')  # Clear the terminal
-        print("Press and hold A when it's safe to pass!")
+def winAnimation():
+    for frame in win_frames:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("You win!!!")
         print(frame[0])
         time.sleep(delay)
-        if keyboard.is_pressed("a") and frame[1] == 3:
-            print(f"{treasure}{frame[1]}")
-            break
-        elif keyboard.is_pressed("a"):
-            print(f"{skull}{frame[1]}")
-            break
+
+def game_loop(cels):
+    for frame, index in cels:
+        os.system('cls' if os.name == 'nt' else 'clear')  # Clear the terminal
+        print("Press A when it's safe to pass!")
+        print(index)
+        print(frame)
+        # Non-blocking delay loop
+        start_time = time.time()
+        while time.time() - start_time < delay:
+            if keyboard.is_pressed("a") and index == int(math.ceil(len(cels) / 2) / 100):
+                winAnimation()
+                return
+            elif keyboard.is_pressed("a"):
+                print(f"{skull}")
+                return
+
+        # Continue to the next frame after the delay
 
 
-animate_ascii(animation_loops)
+while True:
+    game_loop(main_animation)
+    break
