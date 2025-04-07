@@ -1,11 +1,12 @@
 import random as r
 import os
+import obstacle
 
 def d6(modifier = 0, number = 1):
     result = number * r.randint(1,6) + modifier
     return result
 
-player_skill = d6(6)
+player_skill = d6(modifier = 6)
 player_stamina = d6(12, 2)
 player_luck = d6(6)
 
@@ -40,13 +41,15 @@ class Enemy:
     virus = {"name": "virus", "stamina": d6(8,2), "skill": d6(6)}
 
 def getFight(pc, enemy):
+    print(f"Player Stats: Skill: {player_skill}, Stamina: {player_stamina}, Luck: {player_luck}")
     print(f"Player HP: {pc['stamina']} | Enemy HP: {enemy['stamina']}")
     while pc["stamina"] > 0 and enemy["stamina"] > 0:
         move = input("Hack, Firewall, or Flee? [default: hack]").lower() or "hack"
         if move == "hack":
             # Proceed to the attack phase
-            player_attack = d6(2) + pc["skill"]
-            enemy_attack = d6(2) + enemy["skill"]
+            player_attack = d6(0,2) + pc["skill"]
+            enemy_attack = d6(0,2) + enemy["skill"]
+            print(f"Your Roll: {player_attack} | Enemy roll: {enemy_attack}")
             if player_attack >= enemy_attack:
                 print("You found a likely attack vector")
                 enemy["stamina"] -= 2
@@ -69,7 +72,7 @@ def getFight(pc, enemy):
 
         # Check for win/lose conditions
         if pc["stamina"] <= 0:
-            print("You died :(")
+            print(f"{obstacle.skull}You died :(")
             exit()
         elif enemy["stamina"] <= 0:
             print("You win :)")
