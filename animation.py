@@ -1,6 +1,6 @@
 import time, os
 
-def animate_ascii(frames, delay=0.2):
+def animate_ascii(frames, delay=0.15):
     """Animates a sequence of ASCII art frames in the terminal.
 
     Args:
@@ -120,7 +120,7 @@ frames = [
 ]
 
 # Repeat frames to create a longer animation
-animation_frames = frames * 3
+animation_frames = frames * 2
 
 # Animate the frames
 # animate_ascii(animation_frames)
