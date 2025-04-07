@@ -37,7 +37,7 @@ def testStat(stat):
 
 class Enemy:
     # Each enemy needs their own stats STAMINA and SKILL for battles
-    virus = {"name": "virus", "stamina": d6(8,2), "skill": d6()}
+    virus = {"name": "virus", "stamina": d6(8,2), "skill": d6(6)}
 
 def getFight(pc, enemy):
     print(f"Player HP: {pc['stamina']} | Enemy HP: {enemy['stamina']}")

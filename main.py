@@ -1,9 +1,21 @@
 import random as r
 import os
 from time import sleep
-import hacking
+import hacking, obstacle
 import animation as a
 
+
+
+# minigame 2 obstacle course
+start = input("Are ya ready?")
+if start:
+    pass
+obstacle.game_loop(obstacle.main_animation)
+start = input("Great job! Press anything to continue")
+if start:
+    pass
+
+#minigame 3 hacking
 a.animate_ascii(a.animation_frames)
 print("nc -nvlp 1337 -e /bin/bash")
 sleep(2.5)
@@ -15,4 +27,4 @@ print("You're in the mainframe. The elastic strap of your cyberViser is soaked t
 "There's just one more layer of ICE to crack.\n" \
 "Can you hack it, hacker?")
 hacking.getFight(hacking.player, hacking.Enemy.virus)
-nextMove = input("You lived. What next?")
+nextMove = input("You lived. What next? (c)ontinue or (q)uit?")

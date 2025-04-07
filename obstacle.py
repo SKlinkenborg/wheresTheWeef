@@ -93,17 +93,18 @@ def cel_maker(frames):
     frame_ints = []
     for i in range(frame_count):
         frame_ints.append(i)
-     # create tuples of frame, frame #
+     # create list of tuples of frame, frame (zip returns zip object. list to convert.)
     cels = zip(frames, frame_ints)
     cels = list(cels)
     return cels
 
-# create list of tuples for each animation
+# make the animations
 main_animation = cel_maker(frames) * 100
-win_frames = cel_maker(win)
+win_animation = cel_maker(win)
 
+# create the win animation
 def winAnimation():
-    for frame in win_frames:
+    for frame in win_animation:
         os.system('cls' if os.name == 'nt' else 'clear')
         print("You win!!!")
         print(frame[0])
@@ -136,11 +137,11 @@ def game_loop(cels):
                 return
             elif key_pressed:
                 print(f"{skull}")
-                return
+                print("You lose!")
+                time.sleep(2.0)
+                exit()
+                
 
         # Continue to the next frame after the delay
 
 
-while True:
-    game_loop(main_animation)
-    break
