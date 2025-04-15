@@ -21,8 +21,8 @@ def testStat(stat):
     else:
         result = d1 + d2
         # Check if the provided stat exists and compare the result
-    if hasattr(self, stat):
-        current_stat = getattr(self, stat)
+    if hasattr(stat):
+        current_stat = getattr(stat)
         if result <= current_stat:
             print(f"Test succeeded! Rolled {result} against {stat.upper()} ({current_stat}).")
             return True
@@ -30,8 +30,8 @@ def testStat(stat):
             print(f"Test failed! Rolled {result} against {stat.upper()} ({current_stat}).")
             # Reduce the stat by 1 if the test fails
             if stat == "luck":
-                setattr(self, stat, current_stat - 1)
-                print(f"Oof lost a luck point.\nCurrent Luck: {self.luck}")
+                setattr(stat, current_stat - 1)
+                print(f"Oof lost a luck point.\nCurrent Luck: {player_luck}")
             return False
     else:
         raise ValueError(f"Invalid stat: {stat}. Valid stats are 'skill', 'stamina', or 'luck'.")
@@ -75,4 +75,4 @@ def getFight(pc, enemy):
             print(f"{obstacle.skull}You died :(")
             exit()
         elif enemy["stamina"] <= 0:
-            print("You win :)")
+            print("The last ICE shatters into a dozen dark blue polygons.\nThe recipe control config file presents itself adorned in gold rays, ripe for the taking.")

@@ -5,15 +5,15 @@ import hacking, obstacle
 import animation as a
 
 # intro text
-input("There will be an interesting story here.")
+start = input("Having vowed to fix the criminal serving sizes here,\nYou have successfully snuck into the Amazing Taste automated kitchen.\n" \
+"Before you, molten patties of \"meat\" product whiz by on a conveyor belt.\nYou will have to dodge past them to continue.")
 # minigame 1 illogic puzzle
 
 # minigame 2 obstacle course
-start = input("Are ya ready?")
 if start:
     pass
 obstacle.game_loop(obstacle.main_animation)
-start = input("Great job! We're in the server room now. Let's get Press anything to continue")
+start = input("Great job! We're in the server room now. You sit before the server rack,\nprop your cyberdeck on your lap,\nand smile as your cyberViser whirs to life.\nLet's get hacking!")
 if start:
     pass
 
@@ -29,7 +29,7 @@ print("You're in the mainframe. The elastic strap of your cyberViser is soaked t
 "There's just one more layer of ICE to crack.\n" \
 "Can you hack it, hacker?")
 hacking.getFight(hacking.player, hacking.Enemy.virus)
-nextMove = input("You lived. What next? (c)ontinue or (q)uit?")
+nextMove = input("You update the meal recipe, tripling the serving sizes.\nCorpor will surely notice the discrepancy in a few months, or maybe years.\nBut tonight, there's a party at Amazing Taste!")
 
 # outro text / win
 
