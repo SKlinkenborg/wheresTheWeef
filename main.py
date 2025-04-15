@@ -1,5 +1,3 @@
-import random as r
-import os
 from time import sleep
 import hacking, obstacle
 import animation as a

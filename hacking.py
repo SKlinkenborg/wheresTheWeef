@@ -1,5 +1,4 @@
 import random as r
-import os
 import obstacle
 
 def d6(modifier = 0, number = 1):
